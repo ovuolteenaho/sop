@@ -13,29 +13,36 @@ long publisher_timer;
 
 // move single servo
 void servo_action(const xl430move::XL430Move& msg) {
+    int s_pos = convert_to_servo(msg.id, msg.pos);
+
     xl430_change_torque_enable(msg.id, 1);
     xl430_change_servo_speed(msg.id, msg.spd);
-    xl430_change_goal_position(msg.id, msg.pos);
+    xl430_change_goal_position(msg.id, s_pos);
 }
 
 // move all servos
 void servos_action(const xl430move::XL430Moves& msg) {
+    int s_pos_right = convert_to_servo(SERVO_RIGHT, msg.pos_right);
+    int s_pos_front = convert_to_servo(SERVO_FRONT, msg.pos_front);
+    int s_pos_left = convert_to_servo(SERVO_LEFT, msg.pos_left);
+    int s_pos_turn = convert_to_servo(SERVO_TURN, msg.pos_turn);
+
     xl430_change_torque_enable(SERVO_RIGHT, 1);
     xl430_change_torque_enable(SERVO_FRONT, 1);
     xl430_change_torque_enable(SERVO_LEFT, 1);
     xl430_change_torque_enable(SERVO_TURN, 1);
-    
+
     xl430_change_servo_speed(SERVO_RIGHT, msg.spd_right);
-    xl430_change_goal_position(SERVO_RIGHT, msg.pos_right);
+    xl430_change_goal_position(SERVO_RIGHT, s_pos_right);
 
     xl430_change_servo_speed(SERVO_FRONT, msg.spd_front);
-    xl430_change_goal_position(SERVO_FRONT, msg.pos_front);
+    xl430_change_goal_position(SERVO_FRONT, s_pos_front);
 
     xl430_change_servo_speed(SERVO_LEFT, msg.spd_left);
-    xl430_change_goal_position(SERVO_LEFT, msg.pos_left);
+    xl430_change_goal_position(SERVO_LEFT, s_pos_left);
 
     xl430_change_servo_speed(SERVO_TURN, msg.spd_turn);
-    xl430_change_goal_position(SERVO_TURN, msg.pos_turn);
+    xl430_change_goal_position(SERVO_TURN, s_pos_turn);
 }
 
 // nod "yes"

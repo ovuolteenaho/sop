@@ -258,3 +258,24 @@ void xl430_move(unsigned char spd, int offset_right, int offset_front, int offse
     xl430_change_servo_speed(SERVO_TURN, spd);
     xl430_change_goal_position(SERVO_TURN, SERVO_TURN_CENTER + offset_left);
 }
+
+int convert_to_servo(char id, int pos) {
+    int servo;
+    if (id == SERVO_RIGHT) {
+        float kk = (SERVO_RIGHT_TOP - SERVO_RIGHT_BOTTOM) / 100;
+        servo = SERVO_RIGHT_BOTTOM + kk * pos;
+    }
+    else if (id == SERVO_FRONT) {
+        float kk = (SERVO_FRONT_TOP - SERVO_FRONT_BOTTOM) / 100;
+        servo = SERVO_FRONT_BOTTOM + kk * pos;
+    }
+    else if (id == SERVO_LEFT) {
+        float kk = (SERVO_LEFT_TOP - SERVO_LEFT_BOTTOM) / 100;
+        servo = SERVO_LEFT_BOTTOM + kk * pos;
+    }
+    else if (id == SERVO_TURN) {
+        float kk = (SERVO_TURN_TOP - SERVO_TURN_BOTTOM) / 100;
+        servo = SERVO_TURN_BOTTOM + kk * pos;
+    }
+    return servo;
+}

@@ -48,14 +48,25 @@
 #define SERVO_ALL                   0xFE
 
 /* 
- *  center positions for servos
+ *  positions for servos
  *  these probably need to be re-checked if pistons
  *  are separated from servos of the head
  */
-#define SERVO_RIGHT_CENTER          1800
-#define SERVO_FRONT_CENTER          1650
+#define SERVO_RIGHT_BOTTOM          1900
+#define SERVO_RIGHT_CENTER          2100
+#define SERVO_RIGHT_TOP             2400
+
+#define SERVO_FRONT_BOTTOM          2400
+#define SERVO_FRONT_CENTER          2800
+#define SERVO_FRONT_TOP             3200
+
+#define SERVO_LEFT_BOTTOM           900
 #define SERVO_LEFT_CENTER           1100
+#define SERVO_LEFT_TOP              1400
+
+#define SERVO_TURN_BOTTOM           1700
 #define SERVO_TURN_CENTER           2400
+#define SERVO_TURN_TOP              3100
 
 /*other stuff*/
 #define BAUD_RATE                   57600
